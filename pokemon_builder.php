@@ -11,7 +11,21 @@
         public static $hp_enemy;
         public static $hp_pickachu;
 
-        public function __construct($name, $EnergyType, $hitpoints, $Attacks, $Weakness, $Resistance)
+        // getter and setter voor functienaam en maak het protected samen met de var
+        // protected function getterget_name(){
+        //     return $this->name;
+        // }
+        
+        // protected function setterset_name(){
+        //  $this->name = "ok";
+        // }
+        
+
+
+
+        
+        
+        function __construct($name, $EnergyType, $hitpoints, $Attacks, $Weakness, $Resistance)
         {
             $this->name = $name;
             $this->EnergyType = $EnergyType;

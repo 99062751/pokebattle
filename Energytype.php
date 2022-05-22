@@ -1,5 +1,5 @@
 <?php
-    class EnergyType extends Pokemon{
+    class EnergyType{
         public $name;
         public $type;
 
@@ -8,3 +8,8 @@
             $this->type= $type;
         }        
     }
+
+    //inheritance toevoegen en nieuwe klas maken pickachu en magikarp 
+    // opzoeken hoe ik dat moet doen
+    // statics implementeren
+    
