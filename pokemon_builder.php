@@ -1,14 +1,14 @@
 <?php
     require "Attack.php";
     class Pokemon {
-        public $name;
+        protected $name;
         public $EnergyType;
         public $hitpoints;
         public $Attacks;
         public $Weakness;
         public $Resistance;
         public $damage;
-        public static $hp_enemy;
+        public static $hp_magikarp;
         public static $hp_pickachu;
 
         // getter and setter voor functienaam en maak het protected samen met de var
@@ -20,12 +20,7 @@
         //  $this->name = "ok";
         // }
         
-
-
-
-        
-        
-        function __construct($name, $EnergyType, $hitpoints, $Attacks, $Weakness, $Resistance)
+        public function __construct($name, $EnergyType, $hitpoints, $Attacks, $Weakness, $Resistance)
         {
             $this->name = $name;
             $this->EnergyType = $EnergyType;
@@ -34,8 +29,13 @@
             $this->damage= $attackdamage;
             $this->Weakness = $Weakness;
             $this->Resistance = $Resistance;
-            Pokemon::$hp_enemy= $hitpoints;
+            $this->hp_picka= 
+            Pokemon::$hp_magikarp= $hitpoints;
             Pokemon::$hp_pickachu= 100;
+        }
+
+        public function getname(){
+            return $this->name; 
         }
 
         public function execute_attack($atcks, $attacknumber, $pokemon){
@@ -43,7 +43,7 @@
                 if($pokemon->Resistance->name == $atck->type){
                     if($pokemon->name == "Magikarp"){
                         $newdamage= ($atck->damage) - ($pokemon->Resistance->value);
-                        Pokemon::$hp_enemy= Pokemon::$hp_enemy - $newdamage;
+                        Pokemon::$hp_magikarp= Pokemon::$hp_magikarp - $newdamage;
                     }else{
                         $newdamage= ($atck->damage) - ($pokemon->Resistance->value);
                         Pokemon::$hp_pickachu= Pokemon::$hp_pickachu - $newdamage;
@@ -52,7 +52,7 @@
                 }elseif($pokemon->Weakness->name == $atck->type){
                     if($pokemon->name == "Magikarp"){
                         $newdamage= ($atck->damage) * ($pokemon->Weakness->value);
-                        Pokemon::$hp_enemy= Pokemon::$hp_enemy - $newdamage;
+                        Pokemon::$hp_magikarp= Pokemon::$hp_magikarp - $newdamage;
                     }else{
                         $newdamage= ($atck->damage) * ($pokemon->Weakness->value);
                         Pokemon::$hp_pickachu= Pokemon::$hp_pickachu - $newdamage;
@@ -60,7 +60,7 @@
                 return $pokemon->name . " took " . $newdamage . " " . $atck->type ." damage!";
                 }else{
                     if($pokemon->name == "Magikarp"){
-                        Pokemon::$hp_enemy= Pokemon::$hp_enemy - $atck->damage;
+                        Pokemon::$hp_magikarp= Pokemon::$hp_magikarp - $atck->damage;
                     }else{
                         Pokemon::$hp_pickachu= Pokemon::$hp_pickachu - $atck->damage;
                     }
@@ -69,8 +69,8 @@
         }
         public static function printHealth($pokemon){
             if($pokemon->name == "Magikarp"){
-                if(Pokemon::$hp_enemy > 0){
-                    return $pokemon->name. " has only " . Pokemon::$hp_enemy. " hitpoints left!";
+                if(Pokemon::$hp_magikarp > 0){
+                    return $pokemon->name. " has only " . Pokemon::$hp_magikarp. " hitpoints left!";
                 }else{
                     return $pokemon->name . " Has been defeated!!"; 
                 }

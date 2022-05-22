@@ -9,7 +9,6 @@
     $ristkarp= new Resistance("Water", 21);
     $weakkarp= new Weakness("Lightning", 1.3);
 
-
     // aanvallen pickachu
     $atck1_pichachu= new Attack("Electric Ring", "Lightning", 44, $ristpicka->value, $weakpicka->value);
     $atck2_pichachu= new Attack("Pika Punch", "Lightning", 47, $ristpicka->value, $weakpicka->value);
@@ -19,7 +18,7 @@
     $atck2_magikarp= new Attack("Splash", "Water", 47, $ristkarp->value, $weakkarp->value);
 
     $pickachu= new Pokemon("Pickachu", "Lightning", 100, [$atck1_pichachu , $atck2_pichachu], $weakpicka, $ristpicka);
-    $enemy= new Pokemon("Magikarp", "Water", 150, [$atck1_magikarp , $atck2_magikarp], $weakkarp, $ristkarp);
+    $magikarp= new Pokemon("Magikarp", "Water", 150, [$atck1_magikarp , $atck2_magikarp], $weakkarp, $ristkarp);
 
 ?>
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -33,14 +32,14 @@
 
     <div class="w3-img-third w3-display-middle">
         <?php
-            echo "$pickachu->name vs $enemy->name! <br>";
-            while (!(Pokemon::$hp_enemy <= 0) || !(Pokemon::$hp_pickachu <= 0)) {
-                echo $pickachu->execute_attack($pickachu->Attacks, rand(0, (count($pickachu->Attacks) - 1)), $enemy). "<br>";
-                echo $enemy->printHealth($enemy). "<br>";
-                if($enemy->printHealth($enemy) == "Magikarp Has been defeated!!"){
+            echo "{$pickachu->getname()} vs {$magikarp->getname()}! <br>";
+            while (!(Pokemon::$hp_magikarp <= 0) || !(Pokemon::$hp_pickachu <= 0)) {
+                echo $pickachu->execute_attack($pickachu->Attacks, rand(0, (count($pickachu->Attacks) - 1)), $magikarp). "<br>";
+                echo $magikarp->printHealth($magikarp). "<br>";
+                if($magikarp->printHealth($magikarp) == "Magikarp Has been defeated!!"){
                     die();
                 }
-                echo $enemy->execute_attack($enemy->Attacks, rand(0, (count($pickachu->Attacks) - 1)), $pickachu). "<br>";
+                echo $magikarp->execute_attack($magikarp->Attacks, rand(0, (count($pickachu->Attacks) - 1)), $pickachu). "<br>";
                 echo $pickachu->printHealth($pickachu). "<br>";
                 if($pickachu->printHealth($pickachu) == "Pickachu Has been defeated!!"){
                     die();
