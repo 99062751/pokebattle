@@ -33,7 +33,7 @@
 
     <div class="w3-img-third w3-display-middle">
         <?php
-            echo $pickachu->getPickachu() ." vs ". $enemy->getMagikarp(). "! <br>";
+            echo "$pickachu->name vs $enemy->name! <br>";
             while (!(Pokemon::$hp_enemy <= 0) || !(Pokemon::$hp_pickachu <= 0)) {
                 echo $pickachu->execute_attack($pickachu->Attacks, rand(0, (count($pickachu->Attacks) - 1)), $enemy). "<br>";
                 echo $enemy->printHealth($enemy). "<br>";
