@@ -2,22 +2,23 @@
     require "pokemon_builder.php";
     require "Resistance.php";
     require "Weakness.php";
+    
     // Weakness en resistance pickachu en magikarp
     $ristpicka= new Resistance("Lightning", 32);
-    $weakpicka= new Weakness("Water", 1.4);
+    $weakpicka= new Weakness("Water", 1.2);
 
     $ristkarp= new Resistance("Water", 21);
     $weakkarp= new Weakness("Lightning", 1.3);
 
     // aanvallen pickachu
-    $atck1_pichachu= new Attack("Electric Ring", "Lightning", 44, $ristpicka->value, $weakpicka->value);
-    $atck2_pichachu= new Attack("Pika Punch", "Lightning", 47, $ristpicka->value, $weakpicka->value);
+    $atck1_pichachu= new Attack("Electric Ring", "Lightning", 56, $ristpicka->value, $weakpicka->value);
+    $atck2_pichachu= new Attack("Pika Punch", "Lightning", 50, $ristpicka->value, $weakpicka->value);
 
     //aanvallen magikarp
     $atck1_magikarp= new Attack("Blaze", "Water", 34, $ristkarp->value, $weakkarp->value);
     $atck2_magikarp= new Attack("Splash", "Water", 47, $ristkarp->value, $weakkarp->value);
 
-    $pickachu= new Pokemon("Pickachu", "Lightning", 100, [$atck1_pichachu , $atck2_pichachu], $weakpicka, $ristpicka);
+    $pickachu= new Pokemon("Pickachu", "Lightning", 140, [$atck1_pichachu , $atck2_pichachu], $weakpicka, $ristpicka);
     $magikarp= new Pokemon("Magikarp", "Water", 150, [$atck1_magikarp , $atck2_magikarp], $weakkarp, $ristkarp);
 
 ?>
@@ -33,18 +34,22 @@
     <div class="w3-img-third w3-display-middle">
         <?php
             echo "{$pickachu->getname()} vs {$magikarp->getname()}! <br>";
-            while (!(Pokemon::$hp_magikarp <= 0) || !(Pokemon::$hp_pickachu <= 0)) {
-                echo $pickachu->execute_attack($pickachu->Attacks, rand(0, (count($pickachu->Attacks) - 1)), $magikarp). "<br>";
-                echo $magikarp->printHealth($magikarp). "<br>";
-                if($magikarp->printHealth($magikarp) == "Magikarp Has been defeated!!"){
-                    die();
+            // while (!($magikarp->hitpoints <= 0) || !($pickachu->hitpoints <= 0)) {
+                for($i = 0; $i < 5; $i++){  
+                    echo $magikarp->execute_attack($magikarp->Attacks, rand(0, (count($magikarp->Attacks) - 1)), $pickachu). "<br>";
+                    echo $pickachu->printHealth(). "<br>";
+                    if($pickachu->printHealth() == "Pickachu Has been defeated!!"){
+                        die();
+                    }
+                     
+                    echo $pickachu->execute_attack($pickachu->Attacks, rand(0, (count($pickachu->Attacks) - 1)), $magikarp). "<br>";
+                    echo $magikarp->printHealth(). "<br>";
+                    if($magikarp->printHealth() == "Magikarp Has been defeated!!"){
+                        die();
+                    }
+
                 }
-                echo $magikarp->execute_attack($magikarp->Attacks, rand(0, (count($pickachu->Attacks) - 1)), $pickachu). "<br>";
-                echo $pickachu->printHealth($pickachu). "<br>";
-                if($pickachu->printHealth($pickachu) == "Pickachu Has been defeated!!"){
-                    die();
-                }
-            }
+            //}
             
         ?>
     </div>
@@ -52,14 +57,3 @@
 </div>
 
 <?php
-    // echo "<br>";
-
-    // echo $pickachu->execute_attack($pickachu->Attacks, rand(0, (count($pickachu->Attacks) - 1)), $enemy). "<br>";
-    // echo $enemy->printHealth($enemy). "<br>";
-    // echo $enemy->execute_attack($enemy->Attacks, rand(0, (count($pickachu->Attacks) - 1)), $pickachu). "<br>";
-    // echo $pickachu->printHealth($pickachu). "<br>";
-    
-    
-    
-
-
