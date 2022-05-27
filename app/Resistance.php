@@ -1,4 +1,5 @@
 <?php
+namespace app;
     class Resistance {
         public $name; 
         public $value;

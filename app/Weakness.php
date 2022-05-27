@@ -1,4 +1,5 @@
 <?php
+namespace app;
     class Weakness {
         public $name; 
         public $value;

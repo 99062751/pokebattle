@@ -1,4 +1,5 @@
 <?php
+namespace app;
     class EnergyType{
         public $name;
         public $type;

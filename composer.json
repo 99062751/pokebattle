@@ -1,0 +1,15 @@
+{
+    "name": "sumantjakhari/opdracht",
+    "autoload": {
+        "psr-4": {
+            "app\\": "./app"
+        }
+    },
+    "authors": [
+        {
+            "name": "99062751",
+            "email": "70890704+99062751@users.noreply.github.com"
+        }
+    ],
+    "require": {}
+}
