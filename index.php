@@ -17,12 +17,12 @@
     $weakkarp= new Weakness("Lightning", 1.3);
 
     // // aanvallen pickachu
-    $atck1_pichachu= new Attack("Electric Ring", "Lightning", 56, $ristpicka->value, $weakpicka->value);
-    $atck2_pichachu= new Attack("Pika Punch", "Lightning", 50, $ristpicka->value, $weakpicka->value);
+    $atck1_pichachu= new Attack("Electric Ring", "Lightning", 56, $ristpicka->getvalue(), $weakpicka->getvalue());
+    $atck2_pichachu= new Attack("Pika Punch", "Lightning", 50, $ristpicka->getvalue(), $weakpicka->getvalue());
 
     //aanvallen magikarp
-    $atck1_magikarp= new Attack("Blaze", "Water", 34, $ristkarp->value, $weakkarp->value);
-    $atck2_magikarp= new Attack("Splash", "Water", 47, $ristkarp->value, $weakkarp->value);
+    $atck1_magikarp= new Attack("Blaze", "Water", 34, $ristkarp->getvalue(), $weakkarp->getvalue());
+    $atck2_magikarp= new Attack("Splash", "Water", 47, $ristkarp->getvalue(), $weakkarp->getvalue());
 
     $pickachu= new Pokemon("Pickachu", "Lightning", 140, [$atck1_pichachu , $atck2_pichachu], $weakpicka, $ristpicka);
     $magikarp= new Pokemon("Magikarp", "Water", 150, [$atck1_magikarp , $atck2_magikarp], $weakkarp, $ristkarp);

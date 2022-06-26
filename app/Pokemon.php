@@ -70,17 +70,17 @@
         // in een andere klas zetten en die dan aanroepen
         public function execute_attack($atcks, $attacknumber, $pokemon){
                 $atck=  $atcks[$attacknumber];
-                if($pokemon->getResistance()->name == $atck->type){
-                    $newdamage= ($atck->damage) - ($pokemon->getResistance()->value);
+                if($pokemon->getResistance()->getname() == $atck->gettype()){
+                    $newdamage= ($atck->getdamage()) - ($pokemon->getResistance()->getvalue());
                     $this->hitpoints= $this->hitpoints - $newdamage;
-                    return $pokemon->name . " took " . $newdamage ." ". " " . $atck->type ." damage!";
-                }elseif($pokemon->getWeakness()->name == $atck->type){
-                    $newdamage= ($atck->damage) * ($pokemon->getWeakness()->value);
+                    return $pokemon->name . " took " . $newdamage ." ". " " . $atck->gettype() ." damage!";
+                }elseif($pokemon->getWeakness()->getname() == $atck->gettype()){
+                    $newdamage= ($atck->getdamage()) * ($pokemon->getWeakness()->getvalue());
                     $this->hitpoints= $this->hitpoints - $newdamage; - $newdamage;
-                return $pokemon->name . " took " . $newdamage . " " . $atck->type ." damage!";
+                return $pokemon->name . " took " . $newdamage . " " . $atck->gettype() ." damage!";
                 }else{
-                    $this->hitpoints= $this->hitpoints - $newdamage; - $atck->damage;
-                    return $pokemon->name . " took " . $atck->damage . " " . $atck->type ." damage!";
+                    $this->hitpoints= $this->hitpoints - $newdamage; - $atck->getdamage();
+                    return $pokemon->name . " took " . $atck->getdamage() . " " . $atck->gettype() ." damage!";
                 }
         }
         public function printHealth(){

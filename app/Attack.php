@@ -2,11 +2,11 @@
 // properties op private zetten
 namespace app;
     class Attack{
-        public $name;
-        public $type;
-        public $damage; 
-        public $Resistance;
-        public $Weakness;
+        private $name;
+        private $type;
+        private $damage; 
+        private $Resistance;
+        private $Weakness;
 
         public function __construct($name, $egtp, $attackdamage, $rist, $weak){
             $this->name= $name;
@@ -15,25 +15,25 @@ namespace app;
             $this->Resistance= $rist;
             $this->Weakness= $weak;
         }
-        // public function getname(){
-        //     return $this->name;
-        // }
+        public function getname(){
+            return $this->name;
+        }
 
-        // public function gettype(){
-        //     return $this->type;
-        // }
+        public function gettype(){
+            return $this->type;
+        }
 
-        // public function getdamage(){
-        //     return $this->damage;
-        // }
+        public function getdamage(){
+            return $this->damage;
+        }
 
-        // public function getResistance(){
-        //     return $this->Resistance;
-        // }
+        public function getResistance(){
+            return $this->Resistance;
+        }
 
-        // public function getWeakness(){
-        //     return $this->Weakness;
-        // }
+        public function getWeakness(){
+            return $this->Weakness;
+        }
         // getter functies en dan fucntie aanroepen pokemon
     }
 
