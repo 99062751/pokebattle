@@ -1,4 +1,5 @@
 <?php
+// properties op private zetten
 namespace app;
     class Attack{
         public $name;
@@ -14,4 +15,26 @@ namespace app;
             $this->Resistance= $rist;
             $this->Weakness= $weak;
         }
+        // public function getname(){
+        //     return $this->name;
+        // }
+
+        // public function gettype(){
+        //     return $this->type;
+        // }
+
+        // public function getdamage(){
+        //     return $this->damage;
+        // }
+
+        // public function getResistance(){
+        //     return $this->Resistance;
+        // }
+
+        // public function getWeakness(){
+        //     return $this->Weakness;
+        // }
+        // getter functies en dan fucntie aanroepen pokemon
     }
+
+    // zelfde doen voor alle andere subclasses

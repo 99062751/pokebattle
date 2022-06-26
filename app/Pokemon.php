@@ -12,6 +12,10 @@
     // abstract classes 
 
     // protected static class die bijhoud hoeveel pokemon erzijn met static functie blablabla
+
+
+
+    // hitpoints en attacks op protected zetten
     namespace app;
     require_once "./vendor/autoload.php";
     use Attack;
@@ -20,8 +24,8 @@
     class Pokemon{
         protected $name;
         protected $EnergyType;
-        public $hitpoints;
-        public $Attacks;
+        protected $hitpoints;
+        protected $Attacks;
         protected $Weakness;
         protected $Resistance;
         protected $damage;
@@ -56,36 +60,26 @@
             return $this->Resistance; 
         }
 
+        public function gethitpoints(){
+            return $this->hitpoints; 
+        }
+
         public static function exmaple(){
             return "test static" . "<br>";
         }
-
+        // in een andere klas zetten en die dan aanroepen
         public function execute_attack($atcks, $attacknumber, $pokemon){
                 $atck=  $atcks[$attacknumber];
                 if($pokemon->getResistance()->name == $atck->type){
-                    if($pokemon->name == "Magikarp"){
-                        $newdamage= ($atck->damage) - ($pokemon->getResistance()->value);
-                        $this->hitpoints= $this->hitpoints - $newdamage;
-                    }else{
-                        $newdamage= ($atck->damage) - ($pokemon->getResistance()->value);
-                        $this->hitpoints= $this->hitpoints - $newdamage; - $newdamage;
-                    }
+                    $newdamage= ($atck->damage) - ($pokemon->getResistance()->value);
+                    $this->hitpoints= $this->hitpoints - $newdamage;
                     return $pokemon->name . " took " . $newdamage ." ". " " . $atck->type ." damage!";
                 }elseif($pokemon->getWeakness()->name == $atck->type){
-                    if($pokemon->name == "Magikarp"){
-                        $newdamage= ($atck->damage) * ($pokemon->getWeakness()->value);
-                        $this->hitpoints= $this->hitpoints - $newdamage; - $newdamage;
-                    }else{
-                        $newdamage= ($atck->damage) * ($pokemon->getWeakness()->value);
-                        $this->hitpoints= $this->hitpoints - $newdamage; - $newdamage;
-                    }
+                    $newdamage= ($atck->damage) * ($pokemon->getWeakness()->value);
+                    $this->hitpoints= $this->hitpoints - $newdamage; - $newdamage;
                 return $pokemon->name . " took " . $newdamage . " " . $atck->type ." damage!";
                 }else{
-                    if($pokemon->name == "Magikarp"){
-                        $this->hitpoints= $this->hitpoints - $newdamage; - $atck->damage;
-                    }else{
-                        $this->hitpoints= $this->hitpoints - $newdamage; - $atck->damage;
-                    }
+                    $this->hitpoints= $this->hitpoints - $newdamage; - $atck->damage;
                     return $pokemon->name . " took " . $atck->damage . " " . $atck->type ." damage!";
                 }
         }

@@ -43,14 +43,14 @@
         echo $pickachu::exmaple();
         echo $example->print(). "<br>";
             echo "{$pickachu->getname()} vs {$magikarp->getname()}! <br>";
-                while (!($magikarp->hitpoints <= 0) || !($pickachu->hitpoints <= 0)) {
-                    echo $magikarp->execute_attack($magikarp->Attacks, rand(0, (count($magikarp->Attacks) - 1)), $pickachu). "<br>";
+                while (!($magikarp->gethitpoints() <= 0) || !($pickachu->gethitpoints() <= 0)) {
+                    echo $magikarp->execute_attack($magikarp->getAttacks(), rand(0, (count($magikarp->getAttacks()) - 1)), $pickachu). "<br>";
                     echo $pickachu->printHealth(). "<br>";
                     if($pickachu->printHealth() == "Pickachu Has been defeated!!"){
                         die();
                     }
 
-                    echo $pickachu->execute_attack($pickachu->Attacks, rand(0, (count($pickachu->Attacks) - 1)), $magikarp). "<br>";
+                    echo $pickachu->execute_attack($pickachu->getAttacks(), rand(0, (count($pickachu->getAttacks()) - 1)), $magikarp). "<br>";
                     echo $magikarp->printHealth(). "<br>";
                     if($magikarp->printHealth() == "Magikarp Has been defeated!!"){
                         die();
