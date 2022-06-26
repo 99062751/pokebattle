@@ -1,6 +1,7 @@
 <?php
 namespace app;
     class EnergyType{
+        //private properties want protected overbodig
         private $name;
         private $type;
 
@@ -8,7 +9,7 @@ namespace app;
             $this->name= $name;
             $this->type= $type;
         }        
-
+        // alle getters voor private properties
         public function getname(){
             return $this->name;
         }
@@ -17,8 +18,4 @@ namespace app;
             return $this->value;
         }
     }
-
-    //inheritance toevoegen en nieuwe klas maken pickachu en magikarp 
-    // opzoeken hoe ik dat moet doen
-    // statics implementeren
     

@@ -1,13 +1,14 @@
 <?php
-// properties op private zetten
 namespace app;
     class Attack{
+        //private properties want protected overbodig
         private $name;
         private $type;
         private $damage; 
         private $Resistance;
         private $Weakness;
 
+        //construct voor een nieuwe attack maken
         public function __construct($name, $egtp, $attackdamage, $rist, $weak){
             $this->name= $name;
             $this->type= $egtp;
@@ -15,6 +16,8 @@ namespace app;
             $this->Resistance= $rist;
             $this->Weakness= $weak;
         }
+
+        // getters en voor alle protected properties
         public function getname(){
             return $this->name;
         }
@@ -34,7 +37,4 @@ namespace app;
         public function getWeakness(){
             return $this->Weakness;
         }
-        // getter functies en dan fucntie aanroepen pokemon
     }
-
-    // zelfde doen voor alle andere subclasses
