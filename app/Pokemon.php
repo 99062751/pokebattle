@@ -15,8 +15,7 @@
         protected $damage;
 
         //construct zodat ik een nieuwe klas kan maken
-        public function __construct($name, $EnergyType, $hitpoints, $Attacks, $Weakness, $Resistance)
-        {
+        public function __construct($name, $EnergyType, $hitpoints, $Attacks, $Weakness, $Resistance){
             $this->name = $name;
             $this->EnergyType = $EnergyType;
             $this->hitpoints = $hitpoints;
@@ -54,50 +53,41 @@
         }
         // print het health uit van de pokemon
         public function printHealth(){
-            if($this->name == "Magikarp"){
-                if($this->hitpoints > 0){
-                    return $this->name. " has only " . $this->hitpoints. " hitpoints left!";
-                }elseif($this->hitpoints < 0){
-                    return $this->name . " Has been defeated!!"; 
-                }else{
-                    return "Ewwor";
-                }
+            if($this->hitpoints > 0){
+                return $this->name. " has only " . $this->hitpoints. " hitpoints left!";
+            }elseif($this->hitpoints < 0){
+                return $this->name . " Has been defeated!!"; 
             }else{
-                if($this->hitpoints > 0){
-                    return $this->name. " has only " . $this->hitpoints. " hitpoints left!!";
-                }elseif($this->hitpoints < 0){
-                    return $this->name . " Has been defeated!!";
-                }else{
-                    return var_dump($this->name);
-                }
+                return "Error";
             }
         }
     }
-    class pokemon_attack extends Pokemon{
-            protected $atcks; 
-            protected $attacknumber; 
-            protected $pokemon;
 
-            public function __construct($atcks, $attacknumber, $pokemon){
-                $this->atcks = $atcks;
-                $this->attacknumber = $attacknumber;
-                $this->pokemon = $pokemon;
+    class pokemon_attack extends Pokemon{
+        protected $atcks; 
+        protected $attacknumber; 
+        protected $pokemon;
+
+        public function __construct($atcks, $attacknumber, $pokemon){
+            $this->atcks = $atcks;
+            $this->attacknumber = $attacknumber;
+            $this->pokemon = $pokemon;
+        }
+        // aanval klas aangeroepen door index heeft alle values al erin
+        public function execute_attack(){
+            $atck=  $this->atcks[$this->attacknumber];
+            if($this->pokemon->getResistance()->getname() == $atck->gettype()){
+                $newdamage= ($atck->getdamage()) - ($this->pokemon->getResistance()->getvalue());
+                $this->pokemon->hitpoints= $this->pokemon->hitpoints - $newdamage;
+                return $this->pokemon->name . " took " . $newdamage ." ". " " . $atck->gettype() ." damage!". "<br>";
+            }elseif($this->pokemon->getWeakness()->getname() == $atck->gettype()){
+                $newdamage= ($atck->getdamage()) * ($this->pokemon->getWeakness()->getvalue());
+                $this->pokemon->hitpoints= $this->pokemon->hitpoints - $newdamage; - $newdamage;
+            return $this->pokemon->name . " took " . $newdamage . " " . $atck->gettype() ." damage!". "<br>";
+            }else{
+                $this->pokemon->hitpoints= $this->pokemon->hitpoints - $newdamage; - $atck->getdamage();
+                return $this->pokemon->name . " took " . $atck->getdamage() . " " . $atck->gettype() ." damage!". "<br>";
             }
-            // aanval klas aangeroepen door index heeft alle values al erin
-            public function execute_attack2(){
-                $atck=  $this->atcks[$this->attacknumber];
-                if($this->pokemon->getResistance()->getname() == $atck->gettype()){
-                    $newdamage= ($atck->getdamage()) - ($this->pokemon->getResistance()->getvalue());
-                    $this->pokemon->hitpoints= $this->pokemon->hitpoints - $newdamage;
-                    return $this->pokemon->name . " took " . $newdamage ." ". " " . $atck->gettype() ." damage!". "<br>";
-                }elseif($this->pokemon->getWeakness()->getname() == $atck->gettype()){
-                    $newdamage= ($atck->getdamage()) * ($this->pokemon->getWeakness()->getvalue());
-                    $this->pokemon->hitpoints= $this->pokemon->hitpoints - $newdamage; - $newdamage;
-                return $this->pokemon->name . " took " . $newdamage . " " . $atck->gettype() ." damage!". "<br>";
-                }else{
-                    $this->pokemon->hitpoints= $this->pokemon->hitpoints - $newdamage; - $atck->getdamage();
-                    return $this->pokemon->name . " took " . $atck->getdamage() . " " . $atck->gettype() ." damage!". "<br>";
-                }
         }
     }
 ?>

@@ -55,7 +55,7 @@
             // loop door aanvallen totdat een pokemons hp lager is dan 0
                 while (!($magikarp->gethitpoints() <= 0) || !($pickachu->gethitpoints() <= 0)) {
                     // voert een aanval uit en print daarna health van de tegenstander
-                    echo $magi_attack->execute_attack2();
+                    echo $magi_attack->execute_attack();
                     echo $pickachu->printHealth(). "<br>";
                     // als hij een doodbericht van de pokemon klas krijgt stopt hij met aanvallen
                     if($pickachu->printHealth() == "Pickachu Has been defeated!!"){
@@ -63,7 +63,7 @@
                     }
                     
                     // voert een aanval uit en print daarna health van de tegenstander
-                    echo $pika_attack->execute_attack2();
+                    echo $pika_attack->execute_attack();
                     echo $magikarp->printHealth(). "<br>";
                     // als hij een doodbericht van de pokemon klas krijgt stopt hij met aanvallen
                     if($magikarp->printHealth() == "Magikarp Has been defeated!!"){
