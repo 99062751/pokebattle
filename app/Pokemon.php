@@ -48,6 +48,11 @@
             return $this->hitpoints; 
         }
 
+        public function sethitpoints($damage){
+            $this->hitpoints= $this->hitpoints - $damage;
+            return $this->hitpoints; 
+        }
+
         public static function exmaple(){
             return "test static" . "<br>";
         }
@@ -62,32 +67,34 @@
             }
         }
     }
-
-    class pokemon_attack extends Pokemon{
+// pokemon verbinden met atcks
+    class pokemon_attack{
         protected $atcks; 
         protected $attacknumber; 
-        protected $pokemon;
+        protected $opponent;
 
-        public function __construct($atcks, $attacknumber, $pokemon){
+        public function __construct($atcks, $attacknumber, $opponent){
             $this->atcks = $atcks;
             $this->attacknumber = $attacknumber;
-            $this->pokemon = $pokemon;
+            $this->opponent = $opponent;
         }
         // aanval klas aangeroepen door index heeft alle values al erin
         public function execute_attack(){
             $atck=  $this->atcks[$this->attacknumber];
-            if($this->pokemon->getResistance()->getname() == $atck->gettype()){
-                $newdamage= ($atck->getdamage()) - ($this->pokemon->getResistance()->getvalue());
-                $this->pokemon->hitpoints= $this->pokemon->hitpoints - $newdamage;
-                return $this->pokemon->name . " took " . $newdamage ." ". " " . $atck->gettype() ." damage!". "<br>";
-            }elseif($this->pokemon->getWeakness()->getname() == $atck->gettype()){
-                $newdamage= ($atck->getdamage()) * ($this->pokemon->getWeakness()->getvalue());
-                $this->pokemon->hitpoints= $this->pokemon->hitpoints - $newdamage; - $newdamage;
-            return $this->pokemon->name . " took " . $newdamage . " " . $atck->gettype() ." damage!". "<br>";
+            if($this->opponent->getResistance()->getname() == $atck->gettype()){
+                $newdamage= ($atck->getdamage()) - ($this->opponent->getResistance()->getvalue());
+                $this->opponent->sethitpoints($newdamage);
+                return $this->opponent->getname() . " took " . $newdamage ." ". " " . $atck->gettype() ." damage!". "<br>";
+            }elseif($this->opponent->getWeakness()->getname() == $atck->gettype()){
+                $newdamage= ($atck->getdamage()) * ($this->opponent->getWeakness()->getvalue());
+               $this->opponent->sethitpoints($newdamage);
+            return $this->opponent->getname() . " took " . $newdamage . " " . $atck->gettype() ." damage!". "<br>";
             }else{
-                $this->pokemon->hitpoints= $this->pokemon->hitpoints - $newdamage; - $atck->getdamage();
-                return $this->pokemon->name . " took " . $atck->getdamage() . " " . $atck->gettype() ." damage!". "<br>";
+                $damage= $atck->getdamage();
+                $this->opponent->sethitpoints($damage);
+                return $this->opponent->getname() . " took " . $atck->getdamage() . " " . $atck->gettype() ." damage!". "<br>";
             }
+            
         }
     }
 ?>

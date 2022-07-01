@@ -31,7 +31,8 @@
     $pickachu= new Pokemon("Pickachu", "Lightning", 140, [$atck1_pichachu , $atck2_pichachu], $weakpicka, $ristpicka);
     $magikarp= new Pokemon("Magikarp", "Water", 150, [$atck1_magikarp , $atck2_magikarp], $weakkarp, $ristkarp);
 
-    //aanval klas pokemon
+    //aanval klas 
+    //var_dump($atck1_magikarp->getdamage());
     $magi_attack= new pokemon_attack($magikarp->getAttacks(), rand(0, (count($magikarp->getAttacks()) - 1)), $pickachu);
     $pika_attack= new pokemon_attack($pickachu->getAttacks(), rand(0, (count($pickachu->getAttacks()) - 1)), $magikarp);
 
